@@ -6,6 +6,8 @@ public interface Packet<D,M> {
 	
 	public D getData();
 	
+	public String getMediaType();
+	
 	public M getMetaData();
 	
 	public History getHistory();
