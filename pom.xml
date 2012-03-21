@@ -14,6 +14,7 @@
 		<module>core-packet</module>
     <module>core-thruster</module>
     <module>core-distributor</module>
+    <module>core-process</module>
   </modules>
 
 	<dependencyManagement>
