@@ -12,6 +12,6 @@
   <packaging>pom</packaging>
   <modules>
     <module>core-distributor-api</module>
-    <module>core-distributor-default</module>
+    <module>core-distributor-file</module>
   </modules>
 </project>
