@@ -1,6 +1,6 @@
 package core.packet;
 
-public class StringHistoryEvent implements HistoryEvent<String> {
+public class StringHistoryEvent implements HistoryEvent {
 
 	private String event;
 	
@@ -8,8 +8,7 @@ public class StringHistoryEvent implements HistoryEvent<String> {
 		this.event = event;
 	}
 	
-	public String getEvent() {
+	public String getDisplayValue() {
 		return event;
 	}
-
 }
