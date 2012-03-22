@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface History {
 
-	public void addEvent(String event);
+	public void addEvent(HistoryEvent<?> event);
 	
-	public List<String> getHistory();
+	public List<HistoryEvent<?>> getHistory();
 }
