@@ -2,7 +2,7 @@ package core.packet;
 
 import java.util.Properties;
 
-public class DataPacket implements Packet<Object, Properties> {
+public class DataPacket implements Packet<Object, Properties>, MediaType {
 
 	private String packet;
 	private Object data;

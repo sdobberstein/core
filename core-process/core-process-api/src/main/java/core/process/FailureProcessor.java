@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import core.packet.Packet;
+import core.process.exception.ProcessingFilterException;
 
 public abstract class FailureProcessor<D,M> {
 
@@ -12,6 +13,8 @@ public abstract class FailureProcessor<D,M> {
 	public void onFail(Packet<D,M> packet, Throwable cause) {
 		try {
 			handleException(packet, cause);
+		} catch (ProcessingFilterException pfe) {
+			throw pfe;
 		} catch (Throwable t) {
 			for (FailureProcessor<D,M> failureProcessor : getFailureProcessors()) {
 				failureProcessor.onFail(packet, t);

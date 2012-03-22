@@ -3,12 +3,18 @@ package core.process.runnable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import core.packet.Packet;
 import core.process.FailureProcessor;
 import core.process.Processor;
+import core.process.exception.ProcessingFilterException;
 
 public class RunnableProcessor<D,M> implements Runnable {
 
+	private static final Log LOG = LogFactory.getLog(RunnableProcessor.class);
+	
 	private List<Processor<D,M>> processors = new ArrayList<Processor<D,M>>();
 	private List<FailureProcessor<D,M>> failureProcessors = new ArrayList<FailureProcessor<D,M>>();
 	
@@ -38,9 +44,21 @@ public class RunnableProcessor<D,M> implements Runnable {
 					processor.process(packet);
 				}
 			}
+		} catch (ProcessingFilterException pfe) {
+			if (LOG.isInfoEnabled()) {
+				LOG.debug("[FILTER] Packet filtered: " + pfe.getMessage());
+			}
 		} catch (Throwable t) {
 			for (FailureProcessor<D, M> failureProcessor : getFailureProcessors()) {
-				failureProcessor.onFail(packet, t);
+				try {
+					failureProcessor.onFail(packet, t);
+				} catch (ProcessingFilterException pfe) {
+					if (LOG.isDebugEnabled()) {
+						LOG.debug("[FILTER] Packet filtered from FailureProcessors: " + pfe.getMessage());
+					}
+					
+					break;
+				}
 			}
 		}
 	}
