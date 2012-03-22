@@ -5,17 +5,17 @@ import java.util.List;
 
 public class InMemoryHistory implements History {
 
-	private List<String> history;
+	private List<HistoryEvent<?>> history;
 	
 	public InMemoryHistory() {
-		history = new ArrayList<String>();
+		history = new ArrayList<HistoryEvent<?>>();
 	}
 	
-	public void addEvent(String event) {
+	public void addEvent(HistoryEvent<?> event) {
 		history.add(event);
 	}
 
-	public List<String> getHistory() {
+	public List<HistoryEvent<?>> getHistory() {
 		return history;
 	}
 }
