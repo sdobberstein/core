@@ -1,4 +1,6 @@
-package core.packet;
+package core.packet.history;
+
+import core.packet.history.HistoryEvent;
 
 public class StringHistoryEvent implements HistoryEvent {
 

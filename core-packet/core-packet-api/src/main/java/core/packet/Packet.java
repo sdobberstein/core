@@ -1,5 +1,7 @@
 package core.packet;
 
+import core.packet.history.History;
+
 public interface Packet<D,M> {
 
 	public String getPacket();

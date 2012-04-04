@@ -1,4 +1,4 @@
-package core.packet;
+package core.packet.history;
 
 import java.util.List;
 

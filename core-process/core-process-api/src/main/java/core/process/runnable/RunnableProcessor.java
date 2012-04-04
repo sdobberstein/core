@@ -51,7 +51,9 @@ public class RunnableProcessor<D,M> implements Runnable {
 		} catch (Throwable t) {
 			for (FailureProcessor<D, M> failureProcessor : getFailureProcessors()) {
 				try {
-					failureProcessor.onFail(packet, t);
+					List<Throwable> exceptions = new ArrayList<Throwable>();
+					exceptions.add(t);
+					failureProcessor.onFail(packet, exceptions);
 				} catch (ProcessingFilterException pfe) {
 					if (LOG.isDebugEnabled()) {
 						LOG.debug("[FILTER] Packet filtered from FailureProcessors: " + pfe.getMessage());

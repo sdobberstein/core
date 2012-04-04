@@ -1,4 +1,4 @@
-package core.packet;
+package core.packet.history;
 
 public interface HistoryEvent {
 

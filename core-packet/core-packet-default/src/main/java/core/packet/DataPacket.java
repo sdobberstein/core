@@ -2,6 +2,9 @@ package core.packet;
 
 import java.util.Properties;
 
+import core.packet.history.History;
+import core.packet.history.InMemoryHistory;
+
 public class DataPacket implements Packet<Object, Properties>, MediaType {
 
 	private String packet;
