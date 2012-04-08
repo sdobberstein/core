@@ -4,7 +4,7 @@ import core.packet.Packet;
 
 public interface Distributor {
 
-	public boolean distribute(Packet packet);
+	public void distribute(Packet packet);
 	
 	public boolean isSupported(String mediaType);
 	

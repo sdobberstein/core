@@ -22,11 +22,11 @@ public class XmlFileDistributor implements Distributor {
 	}
 	
 	@Override
-	public boolean distribute(Packet packet) {
+	public void distribute(Packet packet) {
 		if (this.fileWriterConfiguration == null) {
-			return fileWriter.writePacket(packet);
+			fileWriter.writePacket(packet);
 		} else {
-			return fileWriter.writePacket(packet, this.fileWriterConfiguration);			
+			fileWriter.writePacket(packet, this.fileWriterConfiguration);			
 		}
 	}
 

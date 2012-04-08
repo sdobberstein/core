@@ -19,7 +19,6 @@ public class FileDistributorTest {
 	@Before
 	public void setUp() {
 		baseDirectory = new File(".").getAbsolutePath() + "src" + File.separator + "test" + File.separator + "output";
-//		baseDirectory = "/home/sean/Development/tmp";
 		distributor = new XmlFileDistributor(new SimpleXmlFileWriter(baseDirectory));
 	}
 	
@@ -32,8 +31,7 @@ public class FileDistributorTest {
 		
 		Packet packet = Packets.getInstance("000", "xml", xml, properties);
 		
-		boolean result = distributor.distribute(packet);
-		Assert.assertTrue(result);
+		distributor.distribute(packet);
 		
 		File xmlFile = new File(baseDirectory + File.separator + "000.xml");
 		File propertiesFile = new File(baseDirectory + File.separator + "000.properties");

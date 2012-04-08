@@ -48,27 +48,23 @@ public class SimpleXmlFileWriter implements FileWriter {
 	}
 	
 	@Override
-	public boolean writePacket(Packet packet) {
-		return writePacket(packet, DEFAULT_CONFIGURATION);
+	public void writePacket(Packet packet) {
+		writePacket(packet, DEFAULT_CONFIGURATION);
 	}
 
 	@Override
-	public boolean writePacket(Packet packet, FileWriterConfiguration configuration) {
-		// ASSUME NOTHING IS WRITTEN
-		boolean rval = false;
+	public void writePacket(Packet packet, FileWriterConfiguration configuration) {
 		
 		if (configuration.isDataWritable()) {
-			rval = writeData(packet, configuration);
+			writeData(packet, configuration);
 		}
 		
 		if (configuration.isPropertiesWritable()) {
-			rval = writeProperties(packet, configuration);
+			writeProperties(packet, configuration);
 		}
-		
-		return rval;
 	}
 
-	private boolean writeData(Packet packet, FileWriterConfiguration configuration) {
+	private void writeData(Packet packet, FileWriterConfiguration configuration) {
 		String target = getTargetFilePath(packet, configuration, "xml");
 		File targetFile = new File(target);
 		
@@ -80,11 +76,7 @@ public class SimpleXmlFileWriter implements FileWriter {
 			String prettyPrint = prettyFormat(packet.getData(), 4);
 			writer.write(prettyPrint);
 		} catch (IOException ioe) {
-			if (LOG.isErrorEnabled()) {
-				LOG.error(ioe.getMessage(), ioe);
-			}
-			
-			return false;
+			throw new RuntimeException(ioe.getMessage(), ioe);
 		} finally {
 			if (writer != null) {
 				try {
@@ -96,11 +88,9 @@ public class SimpleXmlFileWriter implements FileWriter {
 				}
 			}
 		}
-		
-		return true;
 	}
 
-	private boolean writeProperties(Packet packet, FileWriterConfiguration configuration) {
+	private void writeProperties(Packet packet, FileWriterConfiguration configuration) {
 		String target = getTargetFilePath(packet, configuration, "properties");
 		File targetFile = new File(target);
 		
@@ -110,17 +100,9 @@ public class SimpleXmlFileWriter implements FileWriter {
 			fos = new FileOutputStream(targetFile);
 			packet.getProperties().store(fos, null);			
 		} catch (FileNotFoundException fnfe) {
-			if (LOG.isErrorEnabled()) {
-				LOG.error(fnfe.getMessage(), fnfe);
-			}
-			
-			return false;
+			throw new RuntimeException(fnfe.getMessage(), fnfe);
 		} catch (IOException ioe) {
-			if (LOG.isErrorEnabled()) {
-				LOG.error(ioe.getMessage(), ioe);
-			}
-			
-			return false;
+			throw new RuntimeException(ioe.getMessage(), ioe);
 		} finally {
 			if (fos != null) {
 				try {
@@ -132,8 +114,6 @@ public class SimpleXmlFileWriter implements FileWriter {
 				}
 			}
 		}
-		
-		return true;
 	}
 
 	private String getTargetFilePath(Packet packet,	FileWriterConfiguration configuration, String extension) {
