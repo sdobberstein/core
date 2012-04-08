@@ -13,8 +13,8 @@ public class DistributionCenter implements Processor {
 
 	private static final Log LOG = LogFactory.getLog(DistributionCenter.class);
 	
-	private List<Distributor> distributors;
-	private boolean breakOnFailure = false;
+	private final List<Distributor> distributors;
+	private final boolean breakOnFailure;
 	
 	public DistributionCenter(List<Distributor> distributors) {
 		this(distributors, false);
@@ -67,9 +67,5 @@ public class DistributionCenter implements Processor {
 
 	public boolean isBreakOnFailure() {
 		return breakOnFailure;
-	}
-
-	public void setBreakOnFailure(boolean breakOnFailure) {
-		this.breakOnFailure = breakOnFailure;
 	}
 }
