@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>core</groupId>
@@ -12,37 +13,37 @@
 
 	<modules>
 		<module>core-packet</module>
-    <module>core-thruster</module>
-    <module>core-distributor</module>
-    <module>core-process</module>
-  </modules>
+		<module>core-thruster</module>
+		<module>core-distributor</module>
+		<module>core-process</module>
+	</modules>
 
 	<dependencyManagement>
 		<dependencies>
-		    <!-- ==== DISTRIBUTOR DEPENDENCIES ==== -->
-		    <dependency>
-		        <groupId>core.distributor</groupId>
-		        <artifactId>core-distributor-api</artifactId>
-		        <version>${pom.version}</version>
-		    </dependency>
-		
-		    <!-- ==== PACKET DEPENDENCIES ==== -->
-		    <dependency>
-		        <groupId>core.packet</groupId>
-		        <artifactId>core-packet-api</artifactId>
-		        <version>${pom.version}</version>
-		    </dependency>
-		    <dependency>
-		        <groupId>core.packet</groupId>
-		        <artifactId>core-packet-default</artifactId>
-		        <version>${pom.version}</version>
-		    </dependency>
+			<!-- ==== DISTRIBUTOR DEPENDENCIES ==== -->
+			<dependency>
+				<groupId>core.distributor</groupId>
+				<artifactId>core-distributor-api</artifactId>
+				<version>${pom.version}</version>
+			</dependency>
 
-            <dependency>
-                <groupId>commons-logging</groupId>
-                <artifactId>commons-logging</artifactId>
-                <version>1.1.1</version>
-            </dependency>
+			<!-- ==== PACKET DEPENDENCIES ==== -->
+			<dependency>
+				<groupId>core.packet</groupId>
+				<artifactId>core-packet-api</artifactId>
+				<version>${pom.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>core.process</groupId>
+				<artifactId>core-process-api</artifactId>
+				<version>${pom.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-logging</groupId>
+				<artifactId>commons-logging</artifactId>
+				<version>1.1.1</version>
+			</dependency>
 
 			<dependency>
 				<groupId>junit</groupId>

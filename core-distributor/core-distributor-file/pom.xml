@@ -13,6 +13,15 @@
 	<name>core-distributor-file</name>
 
 	<dependencies>
+	    <dependency>
+	        <groupId>core.distributor</groupId>
+	        <artifactId>core-distributor-api</artifactId>
+	    </dependency>
+	    <dependency>
+	        <groupId>core.process</groupId>
+	        <artifactId>core-process-api</artifactId>
+	    </dependency>
+	
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

@@ -1,14 +1,33 @@
 package core.packet;
 
-import core.packet.history.History;
+import java.util.Properties;
 
-public interface Packet<D,M> {
+/**
+ * A generic object that can be used to carry data through a system.
+ * 
+ * @author Sean Dobberstein
+ *
+ */
+public interface Packet {
 
-	public String getPacket();
+	/**
+	 * A value that uniquely identifies this packet from all other packets in the system.
+	 */
+	public String getId();
 	
-	public D getData();
+	/**
+	 * An Internet MIME value that describes what type of data can be found in this packet.
+	 */
+	public String getMediaType();
 	
-	public M getMetaData();
+	/**
+	 * The physical contents of the packet.
+	 */
+	public String getData();
 	
-	public History getHistory();
+	/**
+	 * Metadata associated with this packet, or extracted from the packet.  Allows us to cache
+	 * commonly used attributes.
+	 */
+	public Properties getProperties();
 }

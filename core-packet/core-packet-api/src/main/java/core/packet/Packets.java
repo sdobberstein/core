@@ -1,6 +1,5 @@
 package core.packet;
 
-import java.util.Map.Entry;
 import java.util.Properties;
 
 public class Packets {
@@ -8,13 +7,80 @@ public class Packets {
 	private Packets() {
 	}
 	
-	public static DataPacket newDataPacket(String id, String mediaType, String data, Properties properties) {
-		DataPacket dataPacket = new DataPacket(id, mediaType, data);
+	/**
+	 * Converts the incoming packet to a DataPacket.
+	 * 
+	 * @param packet
+	 *                The packet to convert.
+	 * @return
+	 *                A DataPacket containing the same values.
+	 * @throws
+	 *              IllegalArgumentException - if Id or MediaType are null.
+	 */
+	public static DataPacket valueOf(Packet packet) {
+		return new DataPacket(packet.getId(), packet.getMediaType(), packet.getData(), packet.getProperties());
+	}
+	
+	/**
+	 * Creates a new Packet from the input parameters.
+	 * 
+	 * @param id
+	 *              The value that uniquely identifies this packet.  Cannot be null.
+	 * @param mediaType
+	 *              The type of data this packet contains.  Ex. xml, json, etc.
+	 *              Cannot be null.
+	 * @param data
+	 *              The actual data itself.
+	 * @param properties
+	 *              Values associated with this data.
+	 * @return
+	 *              A new packet representing the input.
+	 * @throws
+	 *              IllegalArgumentException - if Id or MediaType are null.
+	 */
+	public static Packet getInstance(String id, String mediaType, String data, Properties properties) {
+		return new GenericPacket(id, mediaType, data, properties);
+	}
+	
+	private static class GenericPacket implements Packet {
+
+		private final String id;
+		private final String mediaType;
+		private final String data;
+		private final Properties properties;
 		
-		for (Entry<Object, Object> entry : properties.entrySet()) {
-			dataPacket.getProperties().put(entry.getKey(), entry.getValue());
+		public GenericPacket(final String id, final String mediaType, final String data, final Properties properties) {
+			if (id == null) {
+				throw new IllegalArgumentException("Id cannot be null.");
+			} else if (mediaType == null) {
+				throw new IllegalArgumentException("Id cannot be null.");
+			}
+			
+			this.id = id;
+			this.mediaType = mediaType;
+			this.data = data;
+			
+			if (properties == null) {
+				this.properties = new Properties();
+			} else {
+				this.properties = properties;
+			}
 		}
 		
-		return dataPacket;
+		public String getId() {
+			return id;
+		}
+
+		public String getMediaType() {
+			return mediaType;
+		}
+
+		public String getData() {
+			return data;
+		}
+
+		public Properties getProperties() {
+			return properties;
+		}
 	}
 }

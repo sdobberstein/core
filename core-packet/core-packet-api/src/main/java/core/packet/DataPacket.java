@@ -22,18 +22,37 @@ public final class DataPacket implements Packet {
 		this.properties = new Properties();
 	}
 	
+	public DataPacket(String id, String mediaType, String data, Properties properties) {
+		if (id == null) {
+			throw new IllegalArgumentException("Id cannot be null.");
+		} else if (mediaType == null) {
+			throw new IllegalArgumentException("MediaType cannot be null.");
+		} else if (properties == null) {
+			throw new IllegalArgumentException("Properties cannot be null.");
+		}
+		
+		this.id = id;
+		this.mediaType = mediaType;
+		this.data = data;
+		this.properties = properties;
+	}
+	
+	@Override
 	public String getId() {
 		return id;
 	}
 
+	@Override
 	public String getMediaType() {
 		return mediaType;
 	}
 
+	@Override
 	public String getData() {
 		return data;
 	}
 
+	@Override
 	public Properties getProperties() {
 		return properties;
 	}

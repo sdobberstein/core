@@ -2,9 +2,11 @@ package core.distributor;
 
 import core.packet.Packet;
 
-public interface Distributor<D,M> {
+public interface Distributor {
 
-	public boolean distribute(Packet<D,M> packet);
+	public boolean distribute(Packet packet);
 	
-	public boolean isSupported(D data);
+	public boolean isSupported(String mediaType);
+	
+	public boolean isSupported(Packet packet);
 }

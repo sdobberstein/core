@@ -3,9 +3,8 @@ package core.process;
 import java.util.List;
 
 import core.packet.Packet;
-import core.process.result.ProcessingResult;
 
-public interface FailureProcessor<D,M> {
+public interface FailureProcessor {
 	
-	public ProcessingResult onFail(Packet<D,M> packet, List<Throwable> exceptions);
+	public Packet onFail(Packet packet, List<Throwable> exceptions);
 }
