@@ -15,7 +15,6 @@
 
 	<modules>
 		<module>core-packet-api</module>
-		<module>core-packet-default</module>
 	</modules>
 	
 </project>
