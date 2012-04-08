@@ -10,16 +10,7 @@ public final class DataPacket implements Packet {
 	private final Properties properties;
 	
 	public DataPacket(String id, String mediaType, String data) {
-		if (id == null) {
-			throw new IllegalArgumentException("Id cannot be null.");
-		} else if (mediaType == null) {
-			throw new IllegalArgumentException("MediaType cannot be null.");
-		}
-		
-		this.id = id;
-		this.mediaType = mediaType;
-		this.data = data;
-		this.properties = new Properties();
+		this(id, mediaType, data, new Properties());
 	}
 	
 	public DataPacket(String id, String mediaType, String data, Properties properties) {
