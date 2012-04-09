@@ -19,7 +19,7 @@
 	    </dependency>
 	    <dependency>
 	        <groupId>core.process</groupId>
-	        <artifactId>core-process-api</artifactId>
+	        <artifactId>core-process-core</artifactId>
 	    </dependency>
 	
 		<dependency>

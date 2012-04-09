@@ -11,6 +11,13 @@ import core.packet.Packet;
 import core.packet.Packets;
 import core.process.write.SimpleXmlFileWriter;
 
+/**
+ * If you would like to see this print out to your local computer, change the baseDirectory to some folder
+ * on your computer, and comment out the two delete statements at the end.
+ * 
+ * @author sean
+ *
+ */
 public class XmlFileDistributorTest {
 
 	private String baseDirectory;	

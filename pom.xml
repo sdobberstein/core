@@ -38,6 +38,11 @@
 				<artifactId>core-process-api</artifactId>
 				<version>${pom.version}</version>
 			</dependency>
+			<dependency>
+                <groupId>core.process</groupId>
+                <artifactId>core-process-core</artifactId>
+                <version>${pom.version}</version>
+            </dependency>
 
 			<dependency>
 				<groupId>commons-logging</groupId>
