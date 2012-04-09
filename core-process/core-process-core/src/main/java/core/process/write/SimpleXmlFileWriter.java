@@ -44,7 +44,7 @@ public class SimpleXmlFileWriter implements FileWriter {
 		}
 		
 		this.baseDirectory = baseDirectory;
-		this.DEFAULT_CONFIGURATION = new DefaultFileWriterConfiguration(this.baseDirectory);
+		this.DEFAULT_CONFIGURATION = new SimpleFileWriterConfiguration(this.baseDirectory);
 	}
 	
 	@Override
@@ -179,51 +179,5 @@ public class SimpleXmlFileWriter implements FileWriter {
 	    } catch (Exception e) {
 	        throw new RuntimeException(e); // simple exception handling, please review it
 	    }
-	}
-
-	private class DefaultFileWriterConfiguration implements FileWriterConfiguration {
-		
-		private String baseDirectory;
-		private boolean dataWritable = true;
-		private boolean propertiesWritable = true;
-		
-		public DefaultFileWriterConfiguration(String baseDirectory) {
-			this.baseDirectory = baseDirectory;
-		}
-		
-		@Override
-		public boolean isDataWritable() {
-			return dataWritable;
-		}
-		
-		@Override
-		public void setDataWritable(boolean dataWritable) {
-			this.dataWritable = dataWritable;
-		}
-		
-		@Override
-		public boolean isPropertiesWritable() {
-			return propertiesWritable;
-		}
-		
-		@Override
-		public void setPropertiesWritable(boolean propertiesWritable) {
-			this.propertiesWritable = propertiesWritable;
-		}
-
-		@Override
-		public String generateFolderName(Packet packet) {
-			return null;
-		}
-
-		@Override
-		public String generateFileName(Packet packet) {
-			return packet.getId();
-		}
-
-		@Override
-		public String getBaseDirectory() {
-			return baseDirectory;
-		}
 	}
 }

@@ -11,7 +11,7 @@ import core.packet.Packet;
 import core.packet.Packets;
 import core.process.write.SimpleXmlFileWriter;
 
-public class FileDistributorTest {
+public class XmlFileDistributorTest {
 
 	private String baseDirectory;	
 	private XmlFileDistributor distributor;
