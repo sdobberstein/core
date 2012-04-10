@@ -9,14 +9,26 @@
 		<version>0.1.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>core-thruster-api</artifactId>
+	<artifactId>core-thruster-file</artifactId>
 	<name>core-thruster-api</name>
 
 	<dependencies>
+		<!-- ==== THRUSTER DEPENDENCIES ==== -->
+		<dependency>
+			<groupId>core.thruster</groupId>
+			<artifactId>core-thruster-api</artifactId>
+		</dependency>
+
 		<!-- ==== PACKET DEPENDENCIES ==== -->
 		<dependency>
 			<groupId>core.packet</groupId>
 			<artifactId>core-packet-api</artifactId>
+		</dependency>
+
+		<!-- ==== PROCESS DEPENDENCIES ==== -->
+		<dependency>
+			<groupId>core.process</groupId>
+			<artifactId>core-process-api</artifactId>
 		</dependency>
 
 		<!-- ==== TESTING DEPENDENCIES ==== -->
