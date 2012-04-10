@@ -17,6 +17,10 @@
 		<module>core-distributor</module>
 		<module>core-process</module>
 	</modules>
+	
+	<properties>
+	    <spring.version>3.1.1.RELEASE</spring.version>
+	</properties>
 
 	<dependencyManagement>
 		<dependencies>
@@ -39,10 +43,16 @@
 				<version>${pom.version}</version>
 			</dependency>
 			<dependency>
-                <groupId>core.process</groupId>
-                <artifactId>core-process-core</artifactId>
-                <version>${pom.version}</version>
-            </dependency>
+				<groupId>core.process</groupId>
+				<artifactId>core-process-core</artifactId>
+				<version>${pom.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
 
 			<dependency>
 				<groupId>commons-logging</groupId>

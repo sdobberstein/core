@@ -13,5 +13,7 @@
   <modules>
     <module>core-distributor-api</module>
     <module>core-distributor-file</module>
+    <module>core-distributor-database</module>
+    <module>core-distributor-database-spring</module>
   </modules>
 </project>
