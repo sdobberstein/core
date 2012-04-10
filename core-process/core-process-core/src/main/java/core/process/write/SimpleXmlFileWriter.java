@@ -47,6 +47,15 @@ public class SimpleXmlFileWriter implements FileWriter {
 		this.DEFAULT_CONFIGURATION = new SimpleFileWriterConfiguration(this.baseDirectory);
 	}
 	
+	public SimpleXmlFileWriter(FileWriterConfiguration fileWriterConfiguration) {
+		if (fileWriterConfiguration.getBaseDirectory() == null) {
+			throw new IllegalArgumentException("BaseDirectory cannot be null!");
+		}
+		
+		this.baseDirectory = fileWriterConfiguration.getBaseDirectory();
+		this.DEFAULT_CONFIGURATION = fileWriterConfiguration;
+	}
+	
 	@Override
 	public void writePacket(Packet packet) {
 		writePacket(packet, DEFAULT_CONFIGURATION);
@@ -179,5 +188,10 @@ public class SimpleXmlFileWriter implements FileWriter {
 	    } catch (Exception e) {
 	        throw new RuntimeException(e); // simple exception handling, please review it
 	    }
+	}
+
+	@Override
+	public FileWriterConfiguration getFileWriterConfiguration() {
+		return DEFAULT_CONFIGURATION;
 	}
 }

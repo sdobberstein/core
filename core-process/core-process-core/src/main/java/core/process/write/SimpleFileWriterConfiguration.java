@@ -9,6 +9,10 @@ public class SimpleFileWriterConfiguration implements FileWriterConfiguration {
 	private boolean propertiesWritable = true;
 	
 	public SimpleFileWriterConfiguration(String baseDirectory) {
+		if (baseDirectory == null) {
+			throw new IllegalArgumentException("BaseDirectory cannot be null!");
+		}
+		
 		this.baseDirectory = baseDirectory;
 	}
 	

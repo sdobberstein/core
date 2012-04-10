@@ -2,32 +2,20 @@ package core.distributor;
 
 import core.packet.Packet;
 import core.process.write.FileWriter;
-import core.process.write.FileWriterConfiguration;
 
 public class XmlFileDistributor implements Distributor {
 
 	private static final String XML_EXTENSION = "xml";
 	
 	private final FileWriter fileWriter;
-	private final FileWriterConfiguration fileWriterConfiguration;
 	
 	public XmlFileDistributor(FileWriter fileWriter) {
 		this.fileWriter = fileWriter;
-		this.fileWriterConfiguration = null;
-	}
-	
-	public XmlFileDistributor(FileWriter fileWriter, FileWriterConfiguration fileWriterConfiguration) {
-		this.fileWriter = fileWriter;
-		this.fileWriterConfiguration = fileWriterConfiguration;
 	}
 	
 	@Override
 	public void distribute(Packet packet) {
-		if (this.fileWriterConfiguration == null) {
-			fileWriter.writePacket(packet);
-		} else {
-			fileWriter.writePacket(packet, this.fileWriterConfiguration);			
-		}
+		fileWriter.writePacket(packet);
 	}
 
 	@Override

@@ -7,4 +7,6 @@ public interface FileWriter {
 	public void writePacket(Packet packet);
 	
 	public void writePacket(Packet packet, FileWriterConfiguration configuration);
+	
+	public FileWriterConfiguration getFileWriterConfiguration();
 }
