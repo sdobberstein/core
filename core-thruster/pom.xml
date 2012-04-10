@@ -12,5 +12,6 @@
   <packaging>pom</packaging>
   <modules>
     <module>core-thruster-api</module>
+    <module>core-thruster-file</module>
   </modules>
 </project>

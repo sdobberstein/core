@@ -30,6 +30,13 @@
 				<artifactId>core-distributor-api</artifactId>
 				<version>${pom.version}</version>
 			</dependency>
+			
+			<!-- ==== THRUSTER DEPENDENCIES ==== -->
+			<dependency>
+				<groupId>core.thruster</groupId>
+				<artifactId>core-thruster-api</artifactId>
+				<version>${pom.version}</version>
+			</dependency>
 
 			<!-- ==== PACKET DEPENDENCIES ==== -->
 			<dependency>
@@ -37,6 +44,8 @@
 				<artifactId>core-packet-api</artifactId>
 				<version>${pom.version}</version>
 			</dependency>
+			
+			<!-- ==== PROCESS DEPENDENCIES ==== -->
 			<dependency>
 				<groupId>core.process</groupId>
 				<artifactId>core-process-api</artifactId>
@@ -54,12 +63,14 @@
 				<version>${spring.version}</version>
 			</dependency>
 
+			<!-- ==== LOGGING DEPENDENCIES ==== -->
 			<dependency>
 				<groupId>commons-logging</groupId>
 				<artifactId>commons-logging</artifactId>
 				<version>1.1.1</version>
 			</dependency>
 
+			<!-- ==== TESTING DEPENDENCIES ==== -->
 			<dependency>
 				<groupId>junit</groupId>
 				<artifactId>junit</artifactId>
