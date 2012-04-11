@@ -1,49 +1,37 @@
 package core.process;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 
 import core.packet.Packet;
 import core.process.exception.ProcessingFilterException;
 
 public abstract class AbstractFailureProcessor implements FailureProcessor {
 
-	private static final Log LOG = LogFactory.getLog(AbstractFailureProcessor.class);
+	private final List<FailureProcessor> failureProcessors;
 	
-	private List<FailureProcessor> exceptionHandlers = new ArrayList<FailureProcessor>();
+	public AbstractFailureProcessor(List<FailureProcessor> failureProcessors) {
+		this.failureProcessors = failureProcessors;
+	}
 	
 	@Override
-	public Packet onFail(Packet packet, List<Throwable> exceptions) {
-		if (LOG.isErrorEnabled() && exceptions.size() > 0) {
-			int length = exceptions.size() - 1;
-			Throwable throwable = exceptions.get(length);
-			LOG.error(throwable.getMessage(), throwable);
-		}
-		
+	public Packet onFail(Packet packet, List<Throwable> throwables) {
 		try {
-			packet = handleException(packet, exceptions);
-		} catch (ProcessingFilterException pfe) {
-			throw pfe;
+			// TRY TO HANDLE THE EXCEPTION YOURSELF
+			packet = handleException(packet, throwables);
 		} catch (Throwable t) {
-			exceptions.add(t);
-			for (FailureProcessor exceptionHandler : exceptionHandlers) {
-				packet = exceptionHandler.onFail(packet, exceptions);
+			// YOU FAILED TO HANDLE THE EXCEPTION SO GO TO YOUR FAILURE PROCESSORS
+			throwables.add(t);
+			for (FailureProcessor failureProcessor : failureProcessors) {
+				try {
+					packet = failureProcessor.onFail(packet, throwables);					
+				} catch (ProcessingFilterException pfe) {
+					throw pfe;
+				}
 			}
 		}
 		
 		return packet;
 	}
-	
-	abstract protected Packet handleException(Packet packet, List<Throwable> exceptions);
 
-	public List<FailureProcessor> getExceptionHandlers() {
-		return exceptionHandlers;
-	}
-
-	public void setExceptionHandlers(List<FailureProcessor> exceptionHandlers) {
-		this.exceptionHandlers = exceptionHandlers;
-	}
+	abstract protected Packet handleException(Packet packet, List<Throwable> throwables);
 }

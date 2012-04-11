@@ -3,6 +3,7 @@ package core.distributor;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,6 +58,7 @@ public class SpringJdbcDatabaseDistributorTest {
 		InsertCall insertCall = distributor.getConfiguration().getInsertCall(packet);
 		
 		System.out.println(insertCall.getInsertSql());
+		System.out.println(Arrays.asList(insertCall.getParameters()));
 		
 		distributor.distribute(packet);
 		
