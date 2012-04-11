@@ -1,4 +1,4 @@
-package core.process;
+package core.process.processor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,7 @@ import org.apache.commons.logging.LogFactory;
 
 import core.distributor.Distributor;
 import core.packet.Packet;
+import core.process.Processor;
 
 public class DistributionCenter implements Processor {
 

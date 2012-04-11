@@ -1,4 +1,4 @@
-package core.process;
+package core.process.processor;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -8,6 +8,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import core.packet.Packet;
+import core.process.Processor;
 
 public class PacketFlowLogger implements Processor {
 

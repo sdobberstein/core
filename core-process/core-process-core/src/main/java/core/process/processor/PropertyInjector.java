@@ -1,8 +1,9 @@
-package core.process;
+package core.process.processor;
 
 import java.util.Map;
 
 import core.packet.Packet;
+import core.process.Processor;
 
 public class PropertyInjector implements Processor {
 

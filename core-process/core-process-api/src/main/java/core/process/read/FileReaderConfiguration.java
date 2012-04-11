@@ -15,5 +15,4 @@ public interface FileReaderConfiguration {
 	public FileFilter getFileFilter();
 	
 	public void setFileFilter(FileFilter fileFilter);
-	
 }
