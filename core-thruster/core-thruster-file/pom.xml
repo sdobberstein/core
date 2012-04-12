@@ -30,6 +30,11 @@
 			<groupId>core.process</groupId>
 			<artifactId>core-process-api</artifactId>
 		</dependency>
+		<dependency>
+            <groupId>core.process</groupId>
+            <artifactId>core-process-core</artifactId>
+            <scope>test</scope>
+        </dependency>
 
 		<!-- ==== TESTING DEPENDENCIES ==== -->
 		<dependency>
