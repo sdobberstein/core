@@ -1,20 +1,19 @@
 package core.process.database;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.Map;
+import java.util.List;
 
 import core.packet.Packet;
 
 public class SimpleDatabaseConfiguration implements DatabaseConfiguration {
 
 	private final String tableName;
-	private final Map<Integer, ColumnConfiguration> columnConfigurations;
+	private final List<ColumnConfiguration> columnConfigurations;
 
 	private String insertSql;
 	
-	public SimpleDatabaseConfiguration(String tableName, Map<Integer, ColumnConfiguration> columnConfigurations) {
+	public SimpleDatabaseConfiguration(String tableName, List<ColumnConfiguration> columnConfigurations) {
 		this.tableName = tableName;
 		this.columnConfigurations = columnConfigurations;
 	}
@@ -35,9 +34,7 @@ public class SimpleDatabaseConfiguration implements DatabaseConfiguration {
 		sql.append(this.tableName.toUpperCase());
 		sql.append(" (");
 
-		Collection<ColumnConfiguration> configs = this.columnConfigurations
-				.values();
-		Iterator<ColumnConfiguration> iter = configs.iterator();
+		Iterator<ColumnConfiguration> iter = this.columnConfigurations.iterator();
 
 		while (iter.hasNext()) {
 			sql.append(iter.next().getColumnName().toUpperCase());
@@ -50,7 +47,7 @@ public class SimpleDatabaseConfiguration implements DatabaseConfiguration {
 		sql.append(") VALUES (");
 
 		// RESET ITERATOR
-		iter = configs.iterator();
+		iter = this.columnConfigurations.iterator();
 
 		while (iter.hasNext()) {
 			sql.append('?');
@@ -68,8 +65,8 @@ public class SimpleDatabaseConfiguration implements DatabaseConfiguration {
 	}
 
 	@Override
-	public Map<Integer, ColumnConfiguration> getColumnConfigurations() {
-		return Collections.unmodifiableMap(columnConfigurations);
+	public List<ColumnConfiguration> getColumnConfigurations() {
+		return Collections.unmodifiableList(columnConfigurations);
 	}
 
 	@Override
@@ -81,9 +78,9 @@ public class SimpleDatabaseConfiguration implements DatabaseConfiguration {
 
 		private final Packet packet;
 		private final String insertSql;
-		private final Map<Integer, ColumnConfiguration> columnConfigurations;
+		private final List<ColumnConfiguration> columnConfigurations;
 		
-		public BasicInsertCall(Packet packet, String insertSql, Map<Integer, ColumnConfiguration> columnConfigurations) {
+		public BasicInsertCall(Packet packet, String insertSql, List<ColumnConfiguration> columnConfigurations) {
 			this.packet = packet;
 			this.insertSql = insertSql;
 			this.columnConfigurations = columnConfigurations;
@@ -103,7 +100,7 @@ public class SimpleDatabaseConfiguration implements DatabaseConfiguration {
 		public Object[] getParameters() {
 			Object[] parameters = new Object[this.columnConfigurations.size()];
 			
-			Iterator<ColumnConfiguration> iter = this.columnConfigurations.values().iterator();
+			Iterator<ColumnConfiguration> iter = this.columnConfigurations.iterator();
 			
 			int i = 0;
 			while (iter.hasNext()) {

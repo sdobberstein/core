@@ -3,10 +3,9 @@ package core.distributor;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 
 import org.junit.Assert;
@@ -29,13 +28,13 @@ public class SpringJdbcDatabaseDistributorTest {
 	
 	@Before
 	public void setUp() {
-		Map<Integer, ColumnConfiguration> columnConfigurations = new HashMap<Integer, ColumnConfiguration>();
+		List<ColumnConfiguration> columnConfigurations = new ArrayList<ColumnConfiguration>();
 		
 		ColumnConfiguration nameColumnConfiguration = new MockColumnConfiguration("name", Types.VARCHAR, "name");
 		ColumnConfiguration ageColumnConfiguration = new MockColumnConfiguration("age", Types.INTEGER, "age");
 		
-		columnConfigurations.put(new Integer(1), nameColumnConfiguration);
-		columnConfigurations.put(new Integer(2), ageColumnConfiguration);
+		columnConfigurations.add(nameColumnConfiguration);
+		columnConfigurations.add(ageColumnConfiguration);
 		
 		DatabaseConfiguration configuration = new SimpleDatabaseConfiguration("example", columnConfigurations);
 		
