@@ -1,15 +1,25 @@
 package core.process;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import core.packet.Packet;
 import core.process.exception.ProcessingFilterException;
 
 public class ErrorHandlingProcessor implements Processor {
 
-	private Processor processor;
-	private FailureProcessor failureProcessor;
+	private final Processor processor;
+	private final FailureProcessor failureProcessor;
+	
+	public ErrorHandlingProcessor(Processor processor, FailureProcessor failureProcessor) {
+		if (processor == null) {
+			throw new IllegalArgumentException("Processor cannot be null!");
+		}
+		
+		if (failureProcessor == null) {
+			throw new IllegalArgumentException("FailureProcessor cannot be null!");
+		}
+		
+		this.processor = processor;
+		this.failureProcessor = failureProcessor;
+	}
 	
 	@Override
 	public Packet process(Packet packet) {
@@ -18,9 +28,7 @@ public class ErrorHandlingProcessor implements Processor {
 		} catch (ProcessingFilterException pfe) {
 			throw pfe;
 		} catch (Throwable t) {
-			List<Throwable> throwables = new ArrayList<Throwable>();
-			throwables.add(t);
-			packet = failureProcessor.onFail(packet, throwables);
+			packet = failureProcessor.onFail(packet, new ProcessingExceptions(t));
 		}
 		
 		return packet;

@@ -14,16 +14,16 @@ public abstract class AbstractFailureProcessor implements FailureProcessor {
 	}
 	
 	@Override
-	public Packet onFail(Packet packet, List<Throwable> throwables) {
+	public Packet onFail(Packet packet, ProcessingExceptions exceptions) {
 		try {
 			// TRY TO HANDLE THE EXCEPTION YOURSELF
-			packet = handleException(packet, throwables);
+			packet = handleException(packet, exceptions);
 		} catch (Throwable t) {
 			// YOU FAILED TO HANDLE THE EXCEPTION SO GO TO YOUR FAILURE PROCESSORS
-			throwables.add(t);
+			exceptions.add(t);
 			for (FailureProcessor failureProcessor : failureProcessors) {
 				try {
-					packet = failureProcessor.onFail(packet, throwables);					
+					packet = failureProcessor.onFail(packet, exceptions);					
 				} catch (ProcessingFilterException pfe) {
 					throw pfe;
 				}
@@ -33,5 +33,5 @@ public abstract class AbstractFailureProcessor implements FailureProcessor {
 		return packet;
 	}
 
-	abstract protected Packet handleException(Packet packet, List<Throwable> throwables);
+	abstract protected Packet handleException(Packet packet, ProcessingExceptions exceptions);
 }

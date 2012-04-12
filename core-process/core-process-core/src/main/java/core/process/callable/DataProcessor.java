@@ -9,6 +9,7 @@ import org.apache.commons.logging.LogFactory;
 
 import core.packet.Packet;
 import core.process.FailureProcessor;
+import core.process.ProcessingExceptions;
 import core.process.Processor;
 import core.process.exception.ProcessingFilterException;
 
@@ -53,10 +54,9 @@ public class DataProcessor implements Callable<Packet> {
 				LOG.debug("[FILTER] Packet filtered: " + pfe.getMessage());
 			}
 		} catch (Throwable t) {
+			ProcessingExceptions exceptions = new ProcessingExceptions(t);
 			for (FailureProcessor failureProcessor : getFailureProcessors()) {
 				try {
-					List<Throwable> exceptions = new ArrayList<Throwable>();
-					exceptions.add(t);
 					result = failureProcessor.onFail(result, exceptions);
 				} catch (ProcessingFilterException pfe) {
 					if (LOG.isDebugEnabled()) {
