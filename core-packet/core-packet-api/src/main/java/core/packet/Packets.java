@@ -2,23 +2,14 @@ package core.packet;
 
 import java.util.Properties;
 
+/**
+ * Collection of general methods that apply to Packets.
+ */
 public class Packets {
 
 	private Packets() {
-	}
-	
-	/**
-	 * Converts the incoming packet to a DataPacket.
-	 * 
-	 * @param packet
-	 *                The packet to convert.
-	 * @return
-	 *                A DataPacket containing the same values.
-	 * @throws
-	 *              IllegalArgumentException - if Id or MediaType are null.
-	 */
-	public static DataPacket valueOf(Packet packet) {
-		return new DataPacket(packet.getId(), packet.getMediaType(), packet.getData(), packet.getProperties());
+		// This constructor should never be called.
+		throw new AssertionError();
 	}
 	
 	/**

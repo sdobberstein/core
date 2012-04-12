@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import core.packet.Packet;
 import core.packet.Packets;
+import core.process.exception.ProcessingFilterException;
 
 public class ErrorHandlingProcessorTest {
 
@@ -37,6 +38,14 @@ public class ErrorHandlingProcessorTest {
 		Assert.assertEquals("true", packet.getProperties().get("SUCCESS"));
 	}
 	
+	@Test(expected=ProcessingFilterException.class)
+	public void testThrowProcessingFilterException() {
+		Packet packet = Packets.getInstance("111", "xml", "", new Properties());
+
+		errorHandlingProcessor = new ErrorHandlingProcessor(new ProcessingFilterExceptionProcessor(), new FailureProcessorImpl());
+		errorHandlingProcessor.process(packet);
+	}
+	
 	@Test(expected=IllegalArgumentException.class)
 	public void testNullProcessorThrowsException() {
 		errorHandlingProcessor = new ErrorHandlingProcessor(null, new FailureProcessorImpl());
@@ -47,12 +56,25 @@ public class ErrorHandlingProcessorTest {
 		errorHandlingProcessor = new ErrorHandlingProcessor(new ProcessorImpl(), null);
 	}
 	
+	@Test(expected=IllegalArgumentException.class)
+	public void testNullValuesThrowsException() {
+		errorHandlingProcessor = new ErrorHandlingProcessor(null, null);
+	}
+	
 	private class ProcessorImpl implements Processor {
 
 		@Override
 		public Packet process(Packet packet) {
 			packet.getProperties().put("SUCCESS", "true");
 			return packet;
+		}
+	}
+	
+	private class ProcessingFilterExceptionProcessor implements Processor {
+
+		@Override
+		public Packet process(Packet packet) {
+			throw  new ProcessingFilterException();
 		}
 	}
 	

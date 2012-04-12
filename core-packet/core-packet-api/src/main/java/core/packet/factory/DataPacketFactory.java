@@ -19,4 +19,8 @@ public class DataPacketFactory implements PacketFactory {
 		return new DataPacket(id, mediaType, data, properties);
 	}
 
+	@Override
+	public Packet valueOf(Packet packet) {
+		return new DataPacket(packet.getId(), packet.getMediaType(), packet.getData(), packet.getProperties());
+	}
 }

@@ -62,6 +62,21 @@ public class ForkedProcessorTest {
 		Assert.assertEquals("failed", packet.getProperties().get("BBB"));
 	}
 	
+	@Test(expected=IllegalArgumentException.class)
+	public void testNullTrueProcessorThrowsException() {
+		processor = new StubForkedProcessor(null, new StubFalseProcessor());
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testNullFalseProcessorThrowsException() {
+		processor = new StubForkedProcessor(new StubTrueProcessor(), null);
+	}
+	
+	@Test(expected=IllegalArgumentException.class)
+	public void testNullProcessorsThrowsException() {
+		processor = new StubForkedProcessor(null, null);
+	}
+	
 	private class StubFalseProcessor implements Processor {
 
 		@Override
