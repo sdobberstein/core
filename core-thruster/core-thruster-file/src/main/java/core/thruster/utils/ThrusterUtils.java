@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-public class FileToString {
+public class ThrusterUtils {
 
     /**
      * Description of the Method

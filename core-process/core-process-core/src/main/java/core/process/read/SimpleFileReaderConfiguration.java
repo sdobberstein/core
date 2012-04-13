@@ -6,6 +6,7 @@ public class SimpleFileReaderConfiguration implements FileReaderConfiguration {
 
     private String baseDirectory;
     private boolean recursive = false;
+    private boolean deleteAfterRead = true;
     private FileFilter fileFilter = null;
     
     public SimpleFileReaderConfiguration() {}
@@ -32,6 +33,16 @@ public class SimpleFileReaderConfiguration implements FileReaderConfiguration {
     @Override
     public void setRecursiveReader(boolean recursive) {
         this.recursive = recursive;
+    }
+    
+    @Override
+    public boolean isDeleteAfterRead() {
+        return deleteAfterRead;
+    }
+    
+    @Override
+    public void setDeleteAfterRead(boolean deleteAfterRead) {
+        this.deleteAfterRead = deleteAfterRead;
     }
 
     @Override
