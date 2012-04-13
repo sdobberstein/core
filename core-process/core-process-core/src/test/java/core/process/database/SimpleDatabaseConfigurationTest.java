@@ -1,8 +1,8 @@
-package core.process;
+package core.process.database;
 
 import java.sql.Types;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import org.junit.Assert;
@@ -11,9 +11,6 @@ import org.junit.Test;
 
 import core.packet.Packet;
 import core.packet.Packets;
-import core.process.database.ColumnConfiguration;
-import core.process.database.InsertCall;
-import core.process.database.SimpleDatabaseConfiguration;
 
 public class SimpleDatabaseConfigurationTest {
 
@@ -21,13 +18,13 @@ public class SimpleDatabaseConfigurationTest {
 	
 	@Before
 	public void setUp() {
-        Map<Integer, ColumnConfiguration> columnConfigurations = new HashMap<Integer, ColumnConfiguration>();
+        List<ColumnConfiguration> columnConfigurations = new ArrayList<ColumnConfiguration>();
 		
 		ColumnConfiguration nameColumnConfiguration = new MockColumnConfiguration("name", Types.VARCHAR, "name");
 		ColumnConfiguration ageColumnConfiguration = new MockColumnConfiguration("age", Types.INTEGER, "age");
 		
-		columnConfigurations.put(new Integer(1), nameColumnConfiguration);
-		columnConfigurations.put(new Integer(2), ageColumnConfiguration);
+		columnConfigurations.add(nameColumnConfiguration);
+		columnConfigurations.add(ageColumnConfiguration);
 		configuration = new SimpleDatabaseConfiguration("example", columnConfigurations);
 	}
 	

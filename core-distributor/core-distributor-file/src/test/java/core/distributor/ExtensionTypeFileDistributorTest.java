@@ -18,19 +18,19 @@ import core.process.write.SimpleXmlFileWriter;
  * @author sean
  *
  */
-public class XmlFileDistributorTest {
+public class ExtensionTypeFileDistributorTest {
 
 	private String baseDirectory;	
-	private XmlFileDistributor distributor;
+	private ExtensionTypeFileDistributor distributor;
 	
 	@Before
 	public void setUp() {
 		baseDirectory = new File(".").getAbsolutePath() + "src" + File.separator + "test" + File.separator + "output";
-		distributor = new XmlFileDistributor(new SimpleXmlFileWriter(baseDirectory));
 	}
 	
 	@Test
-	public void testWriteFile() {
+	public void testXmlFileWriter() {
+		distributor = new ExtensionTypeFileDistributor(new SimpleXmlFileWriter(baseDirectory), "xml");
 		String xml = "<persons><person><name>sean</name><age>24</age></person></persons>";
 		Properties properties = new Properties();
 		properties.put("name", "sean");

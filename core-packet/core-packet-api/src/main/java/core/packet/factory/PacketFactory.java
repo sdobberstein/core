@@ -9,4 +9,6 @@ public interface PacketFactory {
 	public Packet createWithNewId(String mediaType, String data, Properties properties);
 
 	public Packet create(String id, String mediaType, String data, Properties properties);
+	
+	public Packet valueOf(Packet packet);
 }

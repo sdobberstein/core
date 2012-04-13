@@ -6,14 +6,26 @@
     <artifactId>core</artifactId>
     <version>0.1.0-SNAPSHOT</version>
   </parent>
+  
   <groupId>core.distributor</groupId>
   <artifactId>core-distributor</artifactId>
   <name>core-distributor</name>
   <packaging>pom</packaging>
+  
   <modules>
     <module>core-distributor-api</module>
     <module>core-distributor-file</module>
     <module>core-distributor-database</module>
     <module>core-distributor-database-spring</module>
   </modules>
+  
+  <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.8.1</version>
+            </plugin>
+        </plugins>
+    </build>
 </project>
