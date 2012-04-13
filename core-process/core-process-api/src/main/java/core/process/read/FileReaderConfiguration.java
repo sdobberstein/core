@@ -12,6 +12,10 @@ public interface FileReaderConfiguration {
 	
 	public void setRecursiveReader(boolean recursive);
 	
+	public boolean isDeleteAfterRead();
+	
+	public void setDeleteAfterRead(boolean deleteAfterRead);
+	
 	public FileFilter getFileFilter();
 	
 	public void setFileFilter(FileFilter fileFilter);

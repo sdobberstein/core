@@ -53,13 +53,17 @@ public class FileReaderImpl implements FileReader {
             return read();
         }
         
+        if (configuration.isDeleteAfterRead()) {
+            file.delete();
+        }
+        
         return file;
     }
     
     private boolean readBatchOfFiles(File baseFile) {
         File[] files = baseFile.listFiles(configuration.getFileFilter());
         
-        if (files == null) {
+        if (files == null || files.length == 0) {
             return false;
         } else {
             this.pendingFiles.addAll(Arrays.asList(files));

@@ -9,8 +9,8 @@
 		<version>0.1.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>core-thruster-file</artifactId>
-	<name>core-thruster-file</name>
+	<artifactId>core-thruster-jms</artifactId>
+	<name>core-thruster-jms</name>
 
 	<dependencies>
 		<!-- ==== THRUSTER DEPENDENCIES ==== -->
