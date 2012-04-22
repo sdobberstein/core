@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:amq="http://activemq.apache.org/schema/core"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                           http://activemq.apache.org/schema/core
+                           http://activemq.apache.org/schema/core/activemq-core.xsd">
+                           
+
+    <bean id="destination" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg value="TEST.Q1" />
+    </bean>  
+    
+    <bean id="producerTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="connectionFactory" />
+        <property name="defaultDestination" ref="destination" />
+    </bean>  
+    
+    <bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="tcp://0.0.0.0:61616" />
+    </bean>  
+    
+    <bean id="uuidTextMessageGenerator" class="core.test.jms.producer.MessageGenerator">  
+        <property name="jmsTemplate" ref="producerTemplate" />
+        <property name="messageCreator" ref="messageCreator" />
+        <property name="messageCount" value="10000" />
+        <property name="delayBetweenMessages" value="0" />
+    </bean>
+    
+    <bean id="messageCreator" class="core.test.jms.producer.UuidTextMessageCreator" />
+
+
+
+
+</beans>

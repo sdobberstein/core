@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                        http://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/context 
+                        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="broker" class="core.process.runnable.RunnableBroker">
+        <property name="taskExecutor" ref="taskExecutor" />
+        <property name="runnablePacketFactory" ref="dataProcessorFactory" />
+    </bean>
+
+    <bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <property name="corePoolSize" value="5" />
+        <property name="maxPoolSize" value="10" />
+        <property name="queueCapacity" value="25" />
+    </bean>
+    
+    <bean id="dataProcessorFactory" class="core.process.runnable.RunnableDataProcessorFactory">
+        <property name="processor" ref="processor" />
+        <property name="failureProcessor" ref="failureProcessor" />
+    </bean>
+
+    <bean id="processor" class="core.process.processor.PacketFlowLogger" />
+    
+    <bean id="failureProcessor" class="core.process.processor.failure.FailurePacketFlowLogger" />
+
+</beans>
