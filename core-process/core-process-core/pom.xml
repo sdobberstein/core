@@ -21,17 +21,28 @@
 	        <groupId>core.process</groupId>
 	        <artifactId>core-process-api</artifactId>
 	    </dependency>
+	    <dependency>
+            <groupId>core.thruster</groupId>
+            <artifactId>core-thruster-api</artifactId>
+        </dependency>
 	    
 	    <dependency>
 	        <groupId>log4j</groupId>
 	        <artifactId>log4j</artifactId>
 	        <version>1.2.16</version>
-	        <scope>test</scope>
 	    </dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+		</dependency>
+		<dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
 	</dependencies>
 </project>

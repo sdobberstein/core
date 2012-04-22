@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xmlns:amq="http://activemq.apache.org/schema/core"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context 
+                           http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.springframework.org/schema/jms 
+                           http://www.springframework.org/schema/jms/spring-jms.xsd
+                           http://activemq.apache.org/schema/core
+                           http://activemq.apache.org/schema/core/activemq-core.xsd">
+
+
+	<bean id="destination" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg value="TEST.Q1" />
+	</bean>
+	
+	<bean id="connectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+		<property name="brokerURL">
+			<value>tcp://0.0.0.0:61616</value>
+		</property>
+	</bean>
+	
+	<!-- SYNCHRONOUS JMS THRUSTER -->
+	<!--
+	<bean id="jmsThruster" class="core.thruster.JmsThruster">
+        <property name="packetFactory">
+            <bean class="core.packet.factory.DataPacketFactory" />
+        </property>
+        <property name="jmsTemplate" ref="jmsTemplate" />
+    </bean>
+	
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="connectionFactory" />
+        <property name="defaultDestination" ref="destination" />
+        <property name="receiveTimeout" value="5000" />
+	</bean>
+    
+    <bean id="delegator" class="core.process.Delegator" init-method="run">
+        <property name="broker" ref="broker" />
+        <property name="thruster" ref="jmsThruster" />
+    </bean>
+	-->
+	
+	<!-- ASYNCHRONOUS JMS THRUSTER -->
+	<bean id="asyncJmsThruster" class="core.thruster.AsyncJmsThruster">
+        <property name="packetFactory">
+            <bean class="core.packet.factory.DataPacketFactory" />
+        </property>
+        <property name="broker" ref="broker" />
+	</bean>
+	
+    <bean id="jmsContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="destination" ref="destination"/>
+        <property name="messageListener" ref="asyncJmsThruster" />
+    </bean>
+
+</beans>

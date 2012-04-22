@@ -3,40 +3,40 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>core.thruster</groupId>
-		<artifactId>core-thruster</artifactId>
-		<version>0.1.0-SNAPSHOT</version>
-	</parent>
 
-	<artifactId>core-thruster-jms</artifactId>
-	<name>core-thruster-jms</name>
+	<groupId>core.test</groupId>
+	<artifactId>core-test</artifactId>
+	<version>0.1.0-SNAPSHOT</version>
+	<name>core-test</name>
 
 	<dependencies>
 		<!-- ==== THRUSTER DEPENDENCIES ==== -->
 		<dependency>
 			<groupId>core.thruster</groupId>
-			<artifactId>core-thruster-api</artifactId>
+			<artifactId>core-thruster-jms</artifactId>
+			<version>0.1.0-SNAPSHOT</version>
 		</dependency>
 
 		<!-- ==== PACKET DEPENDENCIES ==== -->
 		<dependency>
 			<groupId>core.packet</groupId>
 			<artifactId>core-packet-api</artifactId>
+			<version>0.1.0-SNAPSHOT</version>
 		</dependency>
 
 		<!-- ==== PROCESS DEPENDENCIES ==== -->
 		<dependency>
 			<groupId>core.process</groupId>
-			<artifactId>core-process-api</artifactId>
-		</dependency>
+                <artifactId>core-process-core</artifactId>
+                <version>0.1.0-SNAPSHOT</version>
+        	</dependency>
         
         <!-- ==== SPRING DEPENDENCIES ==== -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jms</artifactId>
+	    <version>3.1.1.RELEASE</version>
         </dependency>
-
         <dependency>
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-core</artifactId>
@@ -50,8 +50,14 @@
         
         <!-- ==== LOGGING DEPENDENCIES ==== -->
         <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.16</version>
+        </dependency>
+        <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
+	    <version>1.1.1</version>
         </dependency>
         <dependency>
 		    <groupId>org.slf4j</groupId>
@@ -63,13 +69,9 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
+			<version>4.8.2</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-	        <groupId>easymock</groupId>
-	        <artifactId>easymock</artifactId>
-	        <scope>test</scope>
-	    </dependency>
 		<dependency>
 			<groupId>org.apache.xbean</groupId>
 			<artifactId>xbean-spring</artifactId>
