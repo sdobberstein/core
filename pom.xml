@@ -28,40 +28,61 @@
 			<dependency>
 				<groupId>core.distributor</groupId>
 				<artifactId>core-distributor-api</artifactId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 			
 			<!-- ==== THRUSTER DEPENDENCIES ==== -->
 			<dependency>
 				<groupId>core.thruster</groupId>
 				<artifactId>core-thruster-api</artifactId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
+			<dependency>
+                <groupId>core.thruster</groupId>
+                <artifactId>core-thruster-jms</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
 			<!-- ==== PACKET DEPENDENCIES ==== -->
 			<dependency>
 				<groupId>core.packet</groupId>
 				<artifactId>core-packet-api</artifactId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 			
 			<!-- ==== PROCESS DEPENDENCIES ==== -->
 			<dependency>
 				<groupId>core.process</groupId>
 				<artifactId>core-process-api</artifactId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>core.process</groupId>
 				<artifactId>core-process-core</artifactId>
-				<version>${pom.version}</version>
+				<version>${project.version}</version>
 			</dependency>
 
+            <!-- ==== SPRING DEPENDENCIES ==== -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-context</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-core</artifactId>
+                <version>${spring.version}</version>
+            </dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-jdbc</artifactId>
 				<version>${spring.version}</version>
 			</dependency>
+			<dependency>
+	            <groupId>org.springframework</groupId>
+	            <artifactId>spring-jms</artifactId>
+	            <version>${spring.version}</version>
+	        </dependency>
 
 			<!-- ==== LOGGING DEPENDENCIES ==== -->
 			<dependency>

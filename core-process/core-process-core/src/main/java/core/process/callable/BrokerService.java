@@ -4,8 +4,9 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 
 import core.packet.Packet;
+import core.process.Broker;
 
-public class BrokerService {
+public class BrokerService implements Broker {
 
 	private final ExecutorService executorService;
 	private final CallablePacketFactory callablePacketFactory;
@@ -15,7 +16,7 @@ public class BrokerService {
 		this.callablePacketFactory = callablePacketFactory;
 	}
 	
-	public void execute(Packet packet) {
+	public void onMessage(Packet packet) {
 		// CREATE A NEW CALLABLE
 		Callable<Packet> callable = callablePacketFactory.getInstance(packet);
 		

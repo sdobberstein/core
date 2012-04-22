@@ -39,12 +39,12 @@ public class BrokerServiceTest {
 		Packet packet05 = factory.createWithNewId("string", "data05", new Properties());
 		Packet packet06 = factory.createWithNewId("string", "data06", new Properties());
 		
-		brokerService.execute(packet01);
-		brokerService.execute(packet02);
-		brokerService.execute(packet03);
-		brokerService.execute(packet04);
-		brokerService.execute(packet05);
-		brokerService.execute(packet06);
+		brokerService.onMessage(packet01);
+		brokerService.onMessage(packet02);
+		brokerService.onMessage(packet03);
+		brokerService.onMessage(packet04);
+		brokerService.onMessage(packet05);
+		brokerService.onMessage(packet06);
 	}
 	
 	private class PrintProcessor implements Processor {
